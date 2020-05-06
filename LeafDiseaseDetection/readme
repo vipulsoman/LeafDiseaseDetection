@@ -1,0 +1,9 @@
+DIRECTORY USAGE
+1. DataDirectory -----> all files input or output required involving numeric data to be stored here
+2. files -----> all resources, references, rough works/codes and files not directly required by project to be stored here
+3. images -----> all input and output images to be stored here. Classification of images as I or O can't be clearly defined
+4. src ----> all source code to go in one of the packages
+
+
+All images used are in .JPG extension
+All data files are in .JSON extension
