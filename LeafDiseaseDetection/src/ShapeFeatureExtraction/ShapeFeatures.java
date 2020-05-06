@@ -36,10 +36,10 @@ public class ShapeFeatures{
         obj.put("perimeter",perimeter);
         obj.put("length",length);
         obj.put("width",width);
-        obj.put("area",pix_area);
+        //obj.put("area",pix_area);
         obj.put("aspectRatio",Aspect_Ratio);
-        obj.put("formFactor",Form_factor);
-        obj.put("rectangular",Rectang);
+        //obj.put("formFactor",Form_factor);
+        //obj.put("rectangular",Rectang);
 
         PrintWriter pw = null;
         try {
