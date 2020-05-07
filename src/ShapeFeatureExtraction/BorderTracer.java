@@ -90,7 +90,7 @@ static int pixcount=0;
                 j=j1;
                 //if(bimg[i][j]>=200) {
                     output[i][j] = 255;
-                    pixcount++;
+
                 //}
             }
             else
@@ -122,7 +122,7 @@ static int pixcount=0;
                 j=tj;
                 //if(bimg[i][j]>=200) {
                     output[i][j] = 255;
-                    pixcount++;
+
                 //}
             }
             count++;
@@ -131,14 +131,15 @@ static int pixcount=0;
 
 
         //display
-        /*
+
         for(int l=0;l<h;l++)
         {
             for(int m=0;m<w;m++)
-            System.out.print(output[l][m]+"  ");
-            System.out.println("");
+                if(output[l][m]==255) pixcount++;
+
         }
-        */
+
+
         BufferedImage oimg = Utility.GSImg(output);
         System.out.println("Border has been traced");
         return oimg;
