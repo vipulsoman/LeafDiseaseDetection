@@ -1,5 +1,6 @@
 package ShapeFeatureExtraction;
 
+import Main.ImSeg_SubDriver;
 import Misc.Utility;
 import org.json.simple.JSONObject;
 
@@ -10,6 +11,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Queue;
 import java.util.LinkedList;
 public class ShapeFeatures{
@@ -24,6 +27,7 @@ public class ShapeFeatures{
     public static void findShapeFeatures(BufferedImage bimg,int perimeter)
     {
         JSONObject obj = new JSONObject();
+        Map m = new LinkedHashMap(7);
         h=bimg.getHeight();
         w=bimg.getWidth();
         gimg = Utility.GSArray(bimg); //converts bufferedImage to array
@@ -51,20 +55,21 @@ public class ShapeFeatures{
         Aspect_Ratio = length / width;
         Form_factor = (4 * Math.PI * pix_area) / Math.pow(perimeter, 2);
         Rectang = (length * width) / pix_area;
+
+        System.out.println("All Shape Features have been extracted");
+        m.put("perimeter",perimeter);
+        m.put("length",length);
+        m.put("width",width);
+        m.put("area",pix_area);
+        m.put("aspectRatio",Aspect_Ratio);
+        m.put("formFactor",Form_factor);
+        m.put("rectangular",Rectang);
+        obj.put(m, ImSeg_SubDriver.file);
     }
     catch(Exception e)
     {
         System.out.println("Following ERROR Occured during shape F cal:\n" + e.getMessage());
     }
-        System.out.println("All Shape Features have been extracted");
-        obj.put("perimeter",perimeter);
-        obj.put("length",length);
-        obj.put("width",width);
-        obj.put("area",pix_area);
-        obj.put("aspectRatio",Aspect_Ratio);
-        obj.put("formFactor",Form_factor);
-        obj.put("rectangular",Rectang);
-
         PrintWriter pw = null;
         try {
             pw = new PrintWriter("DataDirectory/ShapeData.json");
