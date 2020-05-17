@@ -19,15 +19,15 @@ public class ShapeFeatures{
 
     static int[][] gimg; //globally accessible img
     static int[][] timg1,timg2,timg3,timg4,finalarea;
-    static int h,w, p1_j,p2_j,p3_j,p4_j,p1_i,p2_i,p3_i,p4_i,pix_area;
-    static double length,width,Aspect_Ratio,Form_factor,Rectang;
+    static int h,w, p1_j,p2_j,p3_j,p4_j,p1_i,p2_i,p3_i,p4_i;
+    public static int pix_area;
+    public static double length,width,Aspect_Ratio,Form_factor,Rectang,perimeter;
     static  Queue<Integer> qx = new LinkedList<>();
     static  Queue<Integer> qy = new LinkedList<>();
     
-    public static void findShapeFeatures(BufferedImage bimg,int perimeter)
+    public static void findShapeFeatures(BufferedImage bimg,int peri)
     {
-        JSONObject obj = new JSONObject();
-        Map m = new LinkedHashMap(7);
+        perimeter=peri;
         h=bimg.getHeight();
         w=bimg.getWidth();
         gimg = Utility.GSArray(bimg); //converts bufferedImage to array
@@ -55,7 +55,7 @@ public class ShapeFeatures{
         Aspect_Ratio = length / width;
         Form_factor = (4 * Math.PI * pix_area) / Math.pow(perimeter, 2);
         Rectang = (length * width) / pix_area;
-
+/*
         System.out.println("All Shape Features have been extracted");
         m.put("perimeter",perimeter);
         m.put("length",length);
@@ -65,21 +65,14 @@ public class ShapeFeatures{
         m.put("formFactor",Form_factor);
         m.put("rectangular",Rectang);
         obj.put(m, ImSeg_SubDriver.file);
+
+ */
     }
     catch(Exception e)
     {
-        System.out.println("Following ERROR Occured during shape F cal:\n" + e.getMessage());
+        System.out.println("Following ERROR Occured during shape Feature Calculation:\n" + e.getMessage());
     }
-        PrintWriter pw = null;
-        try {
-            pw = new PrintWriter("DataDirectory/ShapeData.json");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        pw.write(obj.toJSONString());
-        pw.flush();
-        pw.close();
-        System.out.println("All Shape Features have been written to file");
+        System.out.println("All Shape Features have been calculated");
     }
 
     public static void findLength()

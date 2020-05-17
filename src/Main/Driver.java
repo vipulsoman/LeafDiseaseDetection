@@ -5,5 +5,6 @@ public class Driver {
         ImSeg_SubDriver.runner();
         EdgeD_SubDriver.runner();
         ShapeF_SubDriver.runner();
+        TextrExt_SubDriver.runner();
     }
 }
