@@ -280,8 +280,8 @@ public class CCM {
             JSONArray jsonArray = (JSONArray)obj;
             JSONObject m = new JSONObject();
 
-            m.put("id",ImSeg_SubDriver.file);
-            m.put("disease","xyz");
+            m.put("id","bs002");
+            m.put("disease","BacterialSpot");
             m.put("perimeter", ShapeFeatures.perimeter);
             m.put("length", ShapeFeatures.length);
             m.put("width", ShapeFeatures.width);

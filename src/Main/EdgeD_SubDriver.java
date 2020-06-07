@@ -19,12 +19,12 @@ public class EdgeD_SubDriver {
         int[][] im,im2=null;
 
         try {
-            BufferedImage input1 = ImageIO.read(new File("images/output/2_SegmentOutput.png"));
+            BufferedImage input1 = ImageIO.read(new File("images/input/1_leaf.JPG"));
             //canny
             
             BufferedImage output1 = Canny.CannyEdges(input1, CANNY_STD_DEV, CANNY_THRESHOLD_RATIO);
             ImageIO.write(output1, "JPG", new File("images/output/3_canny_op.JPG"));
-                
+
             //opening
             BufferedImage Eoutput1 = Erosion.binaryImage(output1, false);
             ImageIO.write(Eoutput1, "JPG", new File("images/output/4_erosion_op.JPG"));

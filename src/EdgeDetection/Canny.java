@@ -1,7 +1,9 @@
 package EdgeDetection;
 import Misc.Utility;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 public class Canny {
     private static final int GAUSSIAN_RADIUS = 5;
@@ -29,7 +31,7 @@ public class Canny {
         int[][] r2 =new int[h][w];
         int[][] blurred = null;
         BufferedImage edges = null;
-        //BufferedImage eblur = null;
+        BufferedImage eblur = null;
         //BufferedImage eblur1 = null;
         //BufferedImage eblur2 = null;
         numDev = numberDeviations;
@@ -48,6 +50,8 @@ public class Canny {
                 raw[x][y]=traw[a][b];
 
                 blurred = Gaussian.GBlur(raw, GAUSSIAN_RADIUS, GAUSSIAN_INTENSITY);
+                eblur=Utility.GSImg(blurred);
+                ImageIO.write(eblur, "JPG", new File("images/output/2.5_gaussian_op.JPG"));
                 gx = Sobel.Horizontal(blurred);  //Convolved with 3x3 horizontal EdgeDetection.Sobel mask
                 gy = Sobel.Vertical(blurred);    //Convolved with 3x3 vertical EdgeDetection.Sobel mask
 

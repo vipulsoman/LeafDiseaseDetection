@@ -3,7 +3,7 @@ package Main;
 import ImgSegmentation.*;
 
 public class ImSeg_SubDriver {
-    public static String file = "images/input/seg2.png";
+    public static String file = "images/input/BacterialSpot/bs010.JPG";
     public static void runner() {
 
         RGBtoHSV img = new RGBtoHSV(file);

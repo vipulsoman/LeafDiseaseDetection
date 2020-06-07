@@ -39,8 +39,8 @@ public class Segment {
                 }
             }
 
-            f = new File("images/output/2_SegmentOutput.jpg");
-            ImageIO.write(outputImage, "jpg", f); //cant write the file in JPG here for some reason Debug this
+            f = new File("images/output/2_segment_output.png");
+            ImageIO.write(outputImage, "png", f); //cant write the file in JPG here for some reason Debug this
             System.out.println("\t\tWriting completed -> Segmented Image successfully wrote");
 
         }
