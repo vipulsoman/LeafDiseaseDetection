@@ -1,15 +1,12 @@
 package ImgSegmentation;
-
 import Misc.Utility;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 public class regionGrowing {
-    public static void main(String[] args) throws IOException {
+    public static void runner() throws IOException {
         try
         {
             BufferedImage input1 = ImageIO.read(new File("images/input/1_leaf.JPG"));
@@ -64,15 +61,11 @@ public class regionGrowing {
             }
             System.out.println("Ol=kay");
             //File f = new File("OutputSegment.png");
-            ImageIO.write(output,"JPG",  new File("images/output/opseg.jpg"));
+            ImageIO.write(output,"PNG",  new File("images/output/opseg.png"));
             System.out.println("Done kay");
 
         }catch(Exception e){
             e.printStackTrace();
         }
-
     }
-
-
-
 }
