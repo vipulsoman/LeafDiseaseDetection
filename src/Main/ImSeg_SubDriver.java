@@ -14,7 +14,7 @@ public class ImSeg_SubDriver {
         Segment seg = new Segment(open,file);
         //MedianFilter obj = new MedianFilter(seg);
 */
-        regionGrowing.runner();
+        regionGrowing.runner(file);
 
     }
 }

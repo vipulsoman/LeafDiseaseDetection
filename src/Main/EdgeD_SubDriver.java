@@ -19,7 +19,7 @@ public class EdgeD_SubDriver {
         int[][] im,im2=null;
 
         try {
-            BufferedImage input1 = ImageIO.read(new File("images/input/1_leaf.JPG"));
+            BufferedImage input1 = ImageIO.read(new File("images/output/2_SegOP.png"));
             //canny
             
             BufferedImage output1 = Canny.CannyEdges(input1, CANNY_STD_DEV, CANNY_THRESHOLD_RATIO);
