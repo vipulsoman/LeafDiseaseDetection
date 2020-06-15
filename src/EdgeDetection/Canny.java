@@ -5,6 +5,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+import static Main.Driver.outputpath;
+
 public class Canny {
     private static final int GAUSSIAN_RADIUS = 5;
     private static final double GAUSSIAN_INTENSITY = 1.5;
@@ -51,7 +53,7 @@ public class Canny {
 
                 blurred = Gaussian.GBlur(raw, GAUSSIAN_RADIUS, GAUSSIAN_INTENSITY);
                 eblur=Utility.GSImg(blurred);
-                ImageIO.write(eblur, "JPG", new File("images/output/2.5_gaussian_op.JPG"));
+                ImageIO.write(eblur, "JPG", new File(outputpath+"2.5_gaussian_op.JPG"));
                 gx = Sobel.Horizontal(blurred);  //Convolved with 3x3 horizontal EdgeDetection.Sobel mask
                 gy = Sobel.Vertical(blurred);    //Convolved with 3x3 vertical EdgeDetection.Sobel mask
 
@@ -59,12 +61,11 @@ public class Canny {
                 Direction();    //Find the gradient direction at each pixel
                 Suppression();  //Using the direction and magnitude images, identify candidate points
                 edges = Utility.GSImg(Hysteresis());
-                System.out.println("EdgeDetection.Canny Edge Detection Complete");
             }
         }
          catch (Exception ex)
         {
-            System.out.println("ERROR in EdgeDetection.Canny : " + ex.getMessage());
+            System.out.println("Error in EdgeDetection.Canny : " + ex.getMessage());
         }
         return edges;
     }

@@ -83,7 +83,7 @@ public class Opening {
 
         //System.out.println("Image After ImgSegmentation.Opening : ");
         //display(finalImg,gh,gw);
-        System.out.println("\t\t->ImgSegmentation.Opening is completed.");
+
         return finalImg;
     }
 

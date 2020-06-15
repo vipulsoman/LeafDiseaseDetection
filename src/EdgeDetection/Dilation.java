@@ -64,7 +64,6 @@ public class Dilation {
             }
         }
         //img2=Tools.Utility.GSImg(output);
-        System.out.println("EdgeDetection.Dilation with 2x2 kernel carried out");
         return output;
     }
 }

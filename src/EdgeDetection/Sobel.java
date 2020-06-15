@@ -30,8 +30,6 @@ public class Sobel {
 
         return out;
     }
-
-
     public static int[][] Vertical(int[][] raw) {
         int[][] out = null;
         int height = raw.length;
@@ -54,7 +52,6 @@ public class Sobel {
                 }
             }
         }
-
         return out;
     }
 }

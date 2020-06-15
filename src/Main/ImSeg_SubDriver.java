@@ -5,7 +5,6 @@ import ImgSegmentation.*;
 import java.io.IOException;
 
 public class ImSeg_SubDriver {
-    public static String file = "images/input/BacterialSpot/bs010.JPG";
     public static void runner() throws IOException {
         /*
         RGBtoHSV img = new RGBtoHSV(file);
@@ -14,7 +13,7 @@ public class ImSeg_SubDriver {
         Segment seg = new Segment(open,file);
         //MedianFilter obj = new MedianFilter(seg);
 */
-        regionGrowing.runner(file);
+        regionGrowing.runner();
 
     }
 }

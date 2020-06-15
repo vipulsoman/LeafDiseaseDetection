@@ -4,7 +4,6 @@ public class Masking {
     int gh,gw;
     int mask[][], finalImage[][];
         public Masking(RGBtoHSV img){
-        //ImgSegmentation.RGBtoHSV img = new ImgSegmentation.RGBtoHSV("C:\\Users\\shubh\\Desktop\\image.jpg");
 
         gh=img.gh;
         gw=img.gw;
@@ -17,10 +16,6 @@ public class Masking {
                 mask[l][m]=img.hsv[0][l][m];
             }
         }
-
-        //System.out.println();
-        //System.out.println();
-
         /*
         System.out.println("Before ImgSegmentation.Masking:");
         for (int l = 0; l < gw; l++) {
@@ -40,10 +35,6 @@ public class Masking {
                     finalImage[l][m] = 0;
             }
         }
-
-        //System.out.println();
-        //System.out.println();
-
         /*
         System.out.println("After ImgSegmentation.Masking:");
         for (int l = 0; l < gw; l++) {
@@ -54,6 +45,5 @@ public class Masking {
         }
 
          */
-        System.out.println("\t\t->ImgSegmentation.Masking of the image completed.");
     }
 }

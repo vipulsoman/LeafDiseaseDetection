@@ -1,19 +1,25 @@
 package ImgSegmentation;
-import Misc.Utility;
+
+import Main.Driver;
+
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 public class regionGrowing {
-    public static void runner(String inputpath) throws IOException {
+
+    public regionGrowing() throws IOException {
+    }
+
+    public static BufferedImage region(File f) throws IOException {
+        BufferedImage input1 ;
+        BufferedImage output = null;
         try
         {
-            BufferedImage input1 = ImageIO.read(new File(inputpath));
-            final int threshold = 25;
+            input1 = ImageIO.read(f);
+
             int h = input1.getHeight();
             int w = input1.getWidth();
-            BufferedImage output = new BufferedImage(h, w, BufferedImage.TYPE_INT_ARGB);
             int pr,pg,pb,pa;
             int [][] rarray = new int[h][w];
             int [][] garray = new int[h][w];
@@ -21,6 +27,8 @@ public class regionGrowing {
             int [][] aarray = new int[h][w];
             int [][] mask =new int[h][w];
 
+
+            output = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 
             int p=0;
             for( int i = 0 ; i < w ; i++ ) {
@@ -34,35 +42,96 @@ public class regionGrowing {
                 }
             }
 
-            pr = rarray[0][0];
-            pg = garray[0][0];
-            pb = barray[0][0];
-            pa = aarray[0][0];
-
             int a = 0, r = 0, g= 0, b = 0;
-            for (int i = 0; i < h; i++) {
-                for (int j = 0; j < w; j++) {
-                    // diff
-                    if ((Math.abs(pr - rarray[i][j]) >= threshold) && (Math.abs(pg - garray[i][j]) >= threshold) && (Math.abs(pb - barray[i][j]) >= threshold)) {
+            int threshold = 15;
 
-                        p = (a << 24) | (r << 16) | (g << 8) | b;
-                        output.setRGB(i, j, p);
+            //top to bottom
+            for (int i = 0; i < w; i++) {
+                pr = rarray[i][0];
+                pg = garray[i][0];
+                pb = barray[i][0];
+                pa = aarray[i][0];
+                for (int j = 0; j < h; j++) {
+                    if (Math.abs(pr - rarray[i][j]) >= threshold || Math.abs(pg - garray[i][j]) >= threshold || Math.abs(pb - barray[i][j]) >= threshold) {
+                        mask[i][j] = 1;
+                    } else {
+                        mask[i][j] = 0;
                     }
-                    else {
+                }
+            }
+
+            //bottom to top
+            for (int i = 0; i < w; i++) {
+                pr = rarray[i][h-1];
+                pg = garray[i][h-1];
+                pb = barray[i][h-1];
+                pa = aarray[i][h-1];
+                for (int j = 0; j < h; j++) {
+                    if (Math.abs(pr - rarray[i][j]) >= threshold || Math.abs(pg - garray[i][j]) >= threshold || Math.abs(pb - barray[i][j]) >= threshold) {
+                        mask[i][j] = mask[i][j];
+                    } else {
+                        mask[i][j] = 0;
+                    }
+                }
+            }
+
+            //left to right
+            for (int j = 0; j < h; j++) {
+                pr = rarray[0][j];
+                pg = garray[0][j];
+                pb = barray[0][j];
+                pa = aarray[0][j];
+                for (int i = 0; i < w; i++) {
+                    if (Math.abs(pr - rarray[i][j]) >= threshold || Math.abs(pg - garray[i][j]) >= threshold || Math.abs(pb - barray[i][j]) >= threshold) {
+                        mask[i][j] = mask[i][j];
+                    } else {
+                        mask[i][j] = 0;
+                    }
+                }
+            }
+            //right to left
+            for (int j = 0; j < h; j++) {
+                pr = rarray[w-1][j];
+                pg = garray[w-1][j];
+                pb = barray[w-1][j];
+                pa = aarray[w-1][j];
+                for (int i = 0; i < w; i++) {
+                    if (Math.abs(pr - rarray[i][j]) >= threshold || Math.abs(pg - garray[i][j]) >= threshold || Math.abs(pb - barray[i][j]) >= threshold) {
+                        mask[i][j] = mask[i][j];
+                    } else {
+                        mask[i][j] = 0;
+                    }
+                }
+            }
+
+            //writing to a file
+            for (int i = 0; i < w; i++) {
+                for (int j = 0; j < h; j++) {
+                    if (mask[i][j] == 1) {
                         p = input1.getRGB(i, j);
+                        output.setRGB(i, j, p);
+                    } else {
+                        p = (a << 24) | (r << 16) | (g << 8) | b;
                         output.setRGB(i, j, p);
                     }
                 }
             }
-try {
-    ImageIO.write(output, "png", new File("images/output/2_SegOP.png"));
-    System.out.println("Done with region growing");
-} catch (IOException e) {
-    e.printStackTrace();
-}
-        }
-        catch(Exception e){
+
+        }catch(Exception e){
+            System.out.println("-> Exception Occurred");
             e.printStackTrace();
         }
+        return output;
+    }
+
+    public static void runner() throws IOException {
+        removeNoise med = new removeNoise();// writes 1_MedianOutputRGB.png
+        File image1 = new File(Driver.inputfpath);
+        File image2 = new File(  Driver.outputpath+"1_MedianOutputRGB.png");
+        BufferedImage img1 = region(image1);
+        BufferedImage img2 = region(image2);
+        ImageIO.write(img2,"PNG",  new File(Driver.outputpath+"2_SegmentWF.png"));
+        ImageIO.write(img1,"PNG",  new File(Driver.outputpath+"3_SegmentWOF.png"));
+
     }
 }

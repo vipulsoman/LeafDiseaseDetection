@@ -1,5 +1,6 @@
 package ShapeFeatureExtraction;
 
+import Main.Driver;
 import Main.ImSeg_SubDriver;
 import Misc.Utility;
 import org.json.simple.JSONObject;
@@ -72,7 +73,7 @@ public class ShapeFeatures{
     {
         System.out.println("Following ERROR Occured during shape Feature Calculation:\n" + e.getMessage());
     }
-        System.out.println("All Shape Features have been calculated");
+
     }
 
     public static void findLength()
@@ -144,7 +145,7 @@ public class ShapeFeatures{
     public static void findArea() throws IOException {
         //flood_fill(p3_i,p1_j);
         drawRays();
-        System.out.println("Rays Drawn");
+
 
 
         for (int i=0;i<h-1;i++) {
@@ -169,16 +170,16 @@ public class ShapeFeatures{
         }
 
         BufferedImage ti1=Misc.Utility.GSImg(timg1);
-        ImageIO.write(ti1, "JPG", new File("images/output/ti1.JPG"));
+        ImageIO.write(ti1, "JPG", new File(Driver.outputpath+"ti1.JPG"));
         BufferedImage ti2=Misc.Utility.GSImg(timg2);
-        ImageIO.write(ti2, "JPG", new File("images/output/ti2.JPG"));
+        ImageIO.write(ti2, "JPG", new File(Driver.outputpath+"ti2.JPG"));
         BufferedImage ti3=Misc.Utility.GSImg(timg3);
-        ImageIO.write(ti3, "JPG", new File("images/output/ti3.JPG"));
+        ImageIO.write(ti3, "JPG", new File(Driver.outputpath+"ti3.JPG"));
         BufferedImage ti4=Misc.Utility.GSImg(timg4);
-        ImageIO.write(ti4, "JPG", new File("images/output/ti4.JPG"));
+        ImageIO.write(ti4, "JPG", new File(Driver.outputpath+"ti4.JPG"));
 
         BufferedImage areafill=Misc.Utility.GSImg(finalarea);
-        ImageIO.write(areafill, "JPG", new File("images/output/8_areafill.JPG"));
+        ImageIO.write(areafill, "JPG", new File(Driver.outputpath+"9_areafill.JPG"));
     }
 
     public static void drawRays()

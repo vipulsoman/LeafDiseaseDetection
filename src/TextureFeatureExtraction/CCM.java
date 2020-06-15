@@ -1,4 +1,5 @@
 package TextureFeatureExtraction;
+import Main.Driver;
 import Main.ImSeg_SubDriver;
 import ShapeFeatureExtraction.ShapeFeatures;
 import org.json.simple.JSONArray;
@@ -66,7 +67,7 @@ public class CCM {
                 }
             }
 
-            System.out.println();
+
             int p=0,a,r,g,b;
             for(i=0;i <gw; i++) {
                 for (j=0; j<gh; j++) {
@@ -245,7 +246,7 @@ public class CCM {
 
         sos_m = SumOfSquares(mean_N);
         sos_r = SumOfSquares(range_N);
-
+        /*
         System.out.println("10 Extracted Features ->");
         System.out.println();
         System.out.println(": Mean :");
@@ -261,6 +262,8 @@ public class CCM {
         System.out.println("Entropy : " + entropy_r);
         System.out.println("Homogeneity : " + homogeneity_r);
         System.out.println("Sum of Squares : " + sos_r);
+
+         */
         try {
         if(myFile.createNewFile()) {
             PrintWriter outFile = new PrintWriter(new FileWriter("DataDirectory/FeatureData.json"));
@@ -280,8 +283,8 @@ public class CCM {
             JSONArray jsonArray = (JSONArray)obj;
             JSONObject m = new JSONObject();
 
-            m.put("id","bs002");
-            m.put("disease","BacterialSpot");
+            m.put("id",Driver.file);
+            m.put("disease", Driver.diseaseName);
             m.put("perimeter", ShapeFeatures.perimeter);
             m.put("length", ShapeFeatures.length);
             m.put("width", ShapeFeatures.width);
@@ -310,7 +313,6 @@ public class CCM {
         catch (ParseException | IOException e) {
             e.printStackTrace();
         }
-        System.out.println("All Features have been written to json file");
     }//calculate_CCM ends here
 
     private int FindTotal(int [][] m){

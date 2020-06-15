@@ -51,7 +51,6 @@ public class Erosion {
         }
 
         img2= Utility.GSImg(output);
-        System.out.println("EdgeDetection.Erosion with 2x2 kernel carried out");
         return img2;
         
         /**

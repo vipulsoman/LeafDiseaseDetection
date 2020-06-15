@@ -19,29 +19,28 @@ public class EdgeD_SubDriver {
         int[][] im,im2=null;
 
         try {
-            BufferedImage input1 = ImageIO.read(new File("images/output/2_SegOP.png"));
+            BufferedImage input1 = ImageIO.read(new File(Driver.outputpath+"2_SegmentWF.png"));
             //canny
             
             BufferedImage output1 = Canny.CannyEdges(input1, CANNY_STD_DEV, CANNY_THRESHOLD_RATIO);
-            ImageIO.write(output1, "JPG", new File("images/output/3_canny_op.JPG"));
+            ImageIO.write(output1, "JPG", new File(Driver.outputpath+"4_canny_op.JPG"));
 
             //opening
             BufferedImage Eoutput1 = Erosion.binaryImage(output1, false);
-            ImageIO.write(Eoutput1, "JPG", new File("images/output/4_erosion_op.JPG"));
+            ImageIO.write(Eoutput1, "JPG", new File(Driver.outputpath+"5_erosion_op.JPG"));
             
             //dilate
             im= Utility.GSArray(Eoutput1);
             im2 = Dilation.binaryImage(im, true);
             BufferedImage Doutput1= Utility.GSImg(im2);
             
-            ImageIO.write(Doutput1, "JPG", new File("images/output/5_dilation_op.JPG"));
+            ImageIO.write(Doutput1, "JPG", new File(Driver.outputpath+"6_dilation_op.JPG"));
             
             //BlurThresholdClose
             
             BufferedImage btcop=btc(Doutput1,3);
-            ImageIO.write(btcop, "JPG", new File("images/output/6_BTC.JPG"));
-            
-            //ImageIO.write(BorderTracer.trace(btcop), "JPG", new File("images/output/7_bordertrace.JPG"));
+            ImageIO.write(btcop, "JPG", new File(Driver.outputpath+"7_BTC.JPG"));
+
         }
         catch(Exception ex)
         {

@@ -15,7 +15,6 @@ public class MedianFilter {
         File file = obj.f;
         try
         {
-            System.out.println("In Median filter ");
             //reading image
             original = ImageIO.read(file);
             gh=original.getHeight();
@@ -97,10 +96,6 @@ public class MedianFilter {
                 for(j=0;j<hsize;j++)
                     finalimage[rgb][i][j] = imageout[rgb][i+2][j+2];
 
-        //printing the outputv
-        //System.out.println("Image after Median Filtering :");
-        //display(finalimage,hsize,wsize);
-        System.out.println("\t\t->Median Filtering is completed");
 
         int p,a,r,g,b;
 
@@ -119,15 +114,12 @@ public class MedianFilter {
         try {
             File f = new File("images/output/MedianOutput.JPG");
             ImageIO.write(outputImage, "JPG", f);
-            System.out.println("\t\tWriting completed -> Median Filtered Image successfully wrote");
         }
        
         catch(IOException e)
         {
             System.out.println("Error: "+e);
         }
-         
-        
     }
 
     public static void display(int image[][][],int hsize,int wsize) {
@@ -154,10 +146,6 @@ public class MedianFilter {
         }
         System.out.println();
     }
-
-    
-    
-        
-    }
+}
 
 

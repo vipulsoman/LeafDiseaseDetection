@@ -51,7 +51,6 @@ public class Gaussian {
                 outGS[r - rad][c - rad] = (int) Math.round(sum);
             }
         }
-        System.out.println("EdgeDetection.Gaussian Blur Complete");
         return outGS;
     }
 }
