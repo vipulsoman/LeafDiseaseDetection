@@ -7,12 +7,20 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
+import Classification.*;
+import Training.*;
 
 public class firstPage extends JFrame {
     private JPanel panel;
     private JLabel title, imageLabel;
     private JTextField fileName;
     private JButton btnSubmit, btnUpload, btnOpen;
+
+    public static double test_features[] = new double[18];
+    public static String KNNResult, NBResult;
+
 
     String file;
 
@@ -80,6 +88,40 @@ public class firstPage extends JFrame {
         btnSubmit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                Driver.inputfpath = file;
+                Driver.outputpath = "images/test/op/";
+
+                try {
+
+                    ImSeg_SubDriver.runner();
+                    EdgeD_SubDriver.runner();
+                    ShapeF_SubDriver.runner();
+                    TextrExt_SubDriver.runner();
+
+                    assignValues.assignFeatures();          //assign the feature values to the test_features variable
+                    DataClass.runner();
+
+                    double training_features1[][]=DataClass.training_features;
+                    String training_diseases1[]=DataClass.training_diseases;
+                    String[] All_diseases ={"BacterialSpot","Healthy","LateBlight","LeafCurl","MosaicVirus","SeptorialSpot"};
+
+                    int k=11;
+                    KNN.knn(training_features1,training_diseases1,test_features,11);
+                    //NaiveBayesnew.NaiveBayes(training_features1,training_diseases1,test_features,All_diseases);
+                    NaiveBayesnew.NaiveBayes(DataClass.training_features,DataClass.training_diseases,test_features,DataClass.All_diseases);
+
+                    assignValues.assignResult();            //assign the finalResult from KNN and NaiveBayes
+
+                    System.out.println("KNN Result = " + KNNResult);
+                    System.out.println("NB Result = " + NBResult);
+
+
+
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+
                 new secondPage(file, frameTitle);
                 dispose();
             }

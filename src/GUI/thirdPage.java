@@ -30,8 +30,8 @@ public class thirdPage extends JFrame {
         imageLabel = new JLabel();
         btnDetails = new JButton("Less Details");
         btnBack = new JButton("Go Back");
-        result1 = new JLabel("KNN Prediction :  Mosaic Virus");
-        result2 = new JLabel("Naive Bayes Prediction  :  Mosaic Virus ");
+        result1 = new JLabel("KNN Prediction :  " + firstPage.KNNResult);
+        result2 = new JLabel("Naive-Bayes Prediction :  " + firstPage.NBResult);
 
         result1.setForeground(Color.decode("#ffffff"));
         result2.setForeground(Color.decode("#ffffff"));
@@ -40,21 +40,21 @@ public class thirdPage extends JFrame {
 
         //features
         String[][] data = {
-                { "Area", "26376" },
-                { "Form Factor", "0.19402943676497836" },
-                { "Entropy Mean", "1.6719866350768626" },
-                { "Entropy Range", "4.204318021092474" },
-                { "Homogeneity Mean  ", "0.682312377753786" },
-                { "Homogeneity Range", "0.08485436691438598" },
-                { "Perimeter", "1307.0" },
-                { "Aspect Ratio", "0.9004080511633751" },
-                { "Contrast Mean", "267.73086219520883" },
-                { "Contrast Range", "1268.4025336131135" },
-                { "Sum of Squares Mean", "3202.456126228885" },
-                { "Sum of Squares Range", "9838.438988702219" },
-                { "Rectangularity", "1.9748485653549155" },
-                { "Angular Second Moment Mean", "0.4357475156795096" },
-                { "Angular Second Moment Range", "6.465582331463026E-4" }
+                { "Area", String.valueOf(firstPage.test_features[4])},
+                { "Form Factor", String.valueOf(firstPage.test_features[5])},
+                { "Perimeter", String.valueOf(firstPage.test_features[3])},
+                { "Aspect Ratio", String.valueOf(firstPage.test_features[7])},
+                { "Rectangularity", String.valueOf(firstPage.test_features[6])},
+                { "Entropy Mean", String.valueOf(firstPage.test_features[8])},
+                { "Entropy Range", String.valueOf(firstPage.test_features[15])},
+                { "Homogeneity Mean  ", String.valueOf(firstPage.test_features[9])},
+                { "Homogeneity Range", String.valueOf(firstPage.test_features[13])},
+                { "Contrast Mean", String.valueOf(firstPage.test_features[10])},
+                { "Contrast Range", String.valueOf(firstPage.test_features[16])},
+                { "Sum of Squares Mean", String.valueOf(firstPage.test_features[11])},
+                { "Sum of Squares Range", String.valueOf(firstPage.test_features[14])},
+                { "Angular Second Moment Mean", String.valueOf(firstPage.test_features[12])},
+                { "Angular Second Moment Range", String.valueOf(firstPage.test_features[17])}
         };
 
         String[] columnNames = { "Feature", "Value" };

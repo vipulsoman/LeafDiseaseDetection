@@ -5,7 +5,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-import static Main.Driver.outputpath;
+import static Training.Driver.outputpath;
 
 public class Canny {
     private static final int GAUSSIAN_RADIUS = 5;

@@ -26,8 +26,8 @@ public class secondPage extends JFrame {
         imageLabel = new JLabel();
         btnDetails = new JButton("More Details");
         btnBack = new JButton("Go Back");
-        result1 = new JLabel("KNN Prediction :  Mosaic Virus ");
-        result2 = new JLabel("Naive-Bayes Prediction :  Mosaic Virus");
+        result1 = new JLabel("KNN Prediction :  " + firstPage.KNNResult);
+        result2 = new JLabel("Naive-Bayes Prediction :  " + firstPage.NBResult);
 
         result1.setForeground(Color.decode("#ffffff"));
         result2.setForeground(Color.decode("#ffffff"));

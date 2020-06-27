@@ -10,6 +10,6 @@ class Main {
         catch (Exception e) {
             System.out.println("Look and Feel not set");
         }
-        firstPage obj = new firstPage("The Green Bud");
+        index obj = new index("The Green Bud");
     }
 }

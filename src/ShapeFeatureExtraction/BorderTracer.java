@@ -5,12 +5,12 @@ import Misc.Utility;
 import java.awt.image.BufferedImage;
 
 public class BorderTracer {
-static int pixcount=0;
+static double pixcount=0;
     public static BufferedImage trace(BufferedImage img) {
        
         int h=img.getHeight();
         int w=img.getWidth();
-        int i=0,j=0,dir=7,ti,tj,si,sj,count=0,i1=0,j1=0;
+        int i=0,j=0,dir=7,ti=0,tj=0,si,sj,count=0,i1=0,j1=0;
 
         int[][] traw= Utility.GSArray(img);
         int [][] bimg=new int[traw.length+80][traw[0].length+80];
@@ -90,12 +90,14 @@ static int pixcount=0;
                 j=j1;
                 //if(bimg[i][j]>=200) {
                     output[i][j] = 255;
-
                 //}
             }
             else
             {
-                ti=i1; tj=j1;//init to the index of zero value found
+                //init to the index of zero value found
+                ti=i1;
+                tj=j1;
+
                 //radial traversal
                 /**
                  * region clasification as per which i j are manipulated
@@ -105,8 +107,17 @@ static int pixcount=0;
                  * |2|2|3|
                  * -------
                  */
+                int lcounter=0;
+                Boolean breakout=false;
                 while(bimg[ti][tj]==0)
                 {
+
+                    if(lcounter>15){
+                        System.out.println("Exceeded 15--->Exiting Loop");
+                        breakout=true;
+                        break;
+                    }
+                    //System.out.println("Checking 8 pix neighbour");
                     if(( ti == i-1 && tj == j-1 && (dir=3)!=0 )|| ( ti == i && tj == j-1  && (dir=4)!=0)) ti++;//region 1
                     else
                     if(( ti == i+1 && tj == j-1  && (dir=5)!=0) || ( ti == i+1 && tj == j  && (dir=6)!=0)) tj++;//r2
@@ -116,18 +127,20 @@ static int pixcount=0;
                     if(( ti == i-1 && tj == j+1  && (dir=1)!=0) || ( ti == i-1 && tj == j  && (dir=2)!=0)) tj--;//r4
                     else
                     System.out.println(" ! Region Error Occured ! ");
+
+                    lcounter++;
                 }
 
                 i=ti;
                 j=tj;
                 //if(bimg[i][j]>=200) {
                     output[i][j] = 255;
-
+                    if(breakout) break;
                 //}
             }
             count++;
         }
-        while((i!=si && j!=sj)||( count < 65536));//ideally start end pixel should be same but need to find another better way to end the loop temeporaly counting till 100 to end
+        while(((i!=si && j!=sj)||( count < 10000))&&( i>=0 && i<h && i1>=0 && i1<h && ti >=0 && ti<h && j>=0 && j<w &&  j1>=0 && j1<w && tj>=0 && tj<w));//ideally start end pixel should be same but need to find another better way to end the loop temeporaly counting till 100 to end
 
 
         //display
@@ -146,7 +159,7 @@ static int pixcount=0;
 
     }
 
-    public static int getPerimeter(){
+    public static double getPerimeter(){
         return pixcount;
     }
 }

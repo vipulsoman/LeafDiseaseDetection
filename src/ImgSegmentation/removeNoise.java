@@ -1,6 +1,6 @@
 package ImgSegmentation;
 
-import Main.Driver;
+import Training.Driver;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

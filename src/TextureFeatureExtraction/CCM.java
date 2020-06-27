@@ -1,6 +1,5 @@
 package TextureFeatureExtraction;
-import Main.Driver;
-import Main.ImSeg_SubDriver;
+import Training.Driver;
 import ShapeFeatureExtraction.ShapeFeatures;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,11 +9,7 @@ import org.json.simple.parser.ParseException;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
-import static ShapeFeatureExtraction.ShapeFeatures.Aspect_Ratio;
-import static ShapeFeatureExtraction.ShapeFeatures.Form_factor;
 @SuppressWarnings("unchecked")
 
 public class CCM {
@@ -24,8 +19,8 @@ public class CCM {
     int total[][][], mean[][], range[][];
     double mean_N[][], range_N[][];
 
-    double contrast_m, asm_m, sos_m, entropy_m, homogeneity_m;
-    double contrast_r, asm_r, sos_r, entropy_r, homogeneity_r;
+    public static double contrast_m, asm_m, sos_m, entropy_m, homogeneity_m;
+    public static double contrast_r, asm_r, sos_r, entropy_r, homogeneity_r;
 
     int[][][] img;
     BufferedImage image = null;
@@ -263,7 +258,7 @@ public class CCM {
         System.out.println("Homogeneity : " + homogeneity_r);
         System.out.println("Sum of Squares : " + sos_r);
 
-         */
+
         try {
         if(myFile.createNewFile()) {
             PrintWriter outFile = new PrintWriter(new FileWriter("DataDirectory/FeatureData.json"));
@@ -313,6 +308,9 @@ public class CCM {
         catch (ParseException | IOException e) {
             e.printStackTrace();
         }
+         */
+
+
     }//calculate_CCM ends here
 
     private int FindTotal(int [][] m){

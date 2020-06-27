@@ -1,19 +1,12 @@
 package ShapeFeatureExtraction;
 
-import Main.Driver;
-import Main.ImSeg_SubDriver;
+import Training.Driver;
 import Misc.Utility;
-import org.json.simple.JSONObject;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.LinkedHashMap;
-import java.util.Map;
 import java.util.Queue;
 import java.util.LinkedList;
 public class ShapeFeatures{
@@ -26,7 +19,7 @@ public class ShapeFeatures{
     static  Queue<Integer> qx = new LinkedList<>();
     static  Queue<Integer> qy = new LinkedList<>();
     
-    public static void findShapeFeatures(BufferedImage bimg,int peri)
+    public static void findShapeFeatures(BufferedImage bimg,double peri)
     {
         perimeter=peri;
         h=bimg.getHeight();
